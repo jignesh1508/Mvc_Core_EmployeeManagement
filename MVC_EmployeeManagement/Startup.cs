@@ -46,6 +46,10 @@ namespace MVC_EmployeeManagement
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
             //////Default file name changes, pass it to UseDefaultFiles()
             ////FileServerOptions fileServerOptions = new FileServerOptions();

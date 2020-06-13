@@ -100,13 +100,15 @@ namespace MVC_EmployeeManagement.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound",id.ToString());
             }
 
             var employee = _employeeService.GetByid(id);
             if (employee == null)
             {
-                return NotFound();
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id.ToString());
             }
 
             var employeeEdit = new EmployeeEditVm();
@@ -121,6 +123,7 @@ namespace MVC_EmployeeManagement.Controllers
         // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Guid id, [Bind("FirstName,LastName,Id,Photo,CreatedDate,UpdatedDate")] EmployeeEditVm employeeVm)
